@@ -5,9 +5,11 @@ const mailService=async (emailId)=>{
     try {
         const authAcc = await nodemailer.createTestAccount();
     
+        console.log(authAcc);
         const transporter = nodemailer.createTransport({
             host:"smtp.ethereal.email",
-            port:467,
+            // host:"smtp.gmail.com",
+            port:587,
             secure:false,
             auth: {
                 user:authAcc.user,
