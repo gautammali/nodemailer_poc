@@ -1,23 +1,22 @@
 'use strict'
-const nodemailer=require("nodemailer");
+const nodemailer = require("nodemailer");
+const _config = require('dotenv').config();
+
 
 const mailService=async (emailId)=>{
     try {
-        const authAcc = await nodemailer.createTestAccount();
-    
-        console.log(authAcc);
+        console.log(process.env.HOST);
         const transporter = nodemailer.createTransport({
-            host:"smtp.ethereal.email",
-            // host:"smtp.gmail.com",
-            port:587,
+            host:process.env.HOSTSERVICE,
+            port:process.env.HOSTPORT,
             secure:false,
             auth: {
-                user:authAcc.user,
-                pass: authAcc.pass
+                user:process.env.HOST,
+                pass: process.env.HOSTID
             }
         });
         let info=await transporter.sendMail({
-            from:"gautammali@yopmail.com",
+            from: process.env.HOST,
             to:emailId,
             subject :"hello test mail",
             text: "test email from nodemailer" ,
